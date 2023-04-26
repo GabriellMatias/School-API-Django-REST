@@ -24,3 +24,14 @@ class Curse(models.Model):
 
     def __str__(self):
         return self.description
+
+class Registration(models.Model):
+    PERIOD = (
+        ("M", "Morning"),
+        ("A", "Afternoon"),
+        ("N", "Night")
+    )
+
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    curse = models.ForeignKey(Curse, on_delete=models.CASCADE)
+    period = models.CharField(max_length=1, choices=PERIOD, blank=False, null=False, default="M")
